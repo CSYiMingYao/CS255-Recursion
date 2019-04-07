@@ -1,0 +1,111 @@
+import java.util.Scanner;
+
+/**
+   This program calculates the geometric and
+   harmonic progression for a number entered
+   by the user.
+*/
+
+public class Progression
+{
+   public static void main(String[] args)
+   {
+      Scanner keyboard = new Scanner (System.in);
+
+      System.out.println("This program will calculate " +
+                         "the geometric and harmonic " +
+                         "progression for the number " +
+                         "you enter.");
+                         
+      System.out.print("Enter an integer that is " +
+                       "greater than or equal to 1: ");
+                       
+      int input = keyboard.nextInt();
+
+      // Match the method calls with the methods you write
+      int geomAnswer = geometricRecursive(input);
+      double harmAnswer = harmonicRecursive(input);
+
+      System.out.println("Using recursion:");
+      
+      System.out.println("The geometric progression of " +
+                         input + " is " + geomAnswer);
+                         
+      System.out.println("The harmonic progression of " +
+                         input + " is " + harmAnswer);
+
+      // Match the method calls with the methods you write
+      geomAnswer = geometricIterative(input);
+      harmAnswer = harmonicIterative(input);
+
+      System.out.println("Using iteration:");
+      System.out.println("The geometric progression of " +
+                         input + " is " + geomAnswer);
+                         
+      System.out.println("The harmonic progression of " +
+                         input + " is " + harmAnswer);
+   }
+
+
+   private static double harmonicIterative(int num) {
+       double sum = 0;
+       for (int i = 1; i <= num; i++) {
+           sum += (double) (1.0 / (num + (i - 1) * num));
+       }
+       return sum;
+   }
+
+   private static int geometricIterative(int num) {
+       int sum = 0;
+       for (int i = 1; i <= num; i++) {
+           sum += Math.pow(num, i);
+       }
+       return sum;
+   }
+
+   private static double harmonicRecursive(int num) {
+       int diff = num;
+       int terms = num;
+       double firstTerm = num;
+       double sum = 0;
+       if (terms == 1) {
+           sum = 1;
+       } else {
+           for (int i = 1; i <= terms; i++)
+               sum += 1.0 / harmonicRecursive(firstTerm, diff, i); 
+       }
+       return sum;
+   }
+
+
+   private static double harmonicRecursive(double firstTerm, int diff, int terms) {
+       if (terms == 1)
+           return firstTerm;
+       else
+           return (diff + harmonicRecursive(firstTerm, diff, terms - 1));
+   }
+
+
+   private static int geometricRecursive(int num) {
+       int ratio = num;
+       int terms = num;
+       int firstTerm = 1;
+       int sum = 0;
+       if (terms == 1) {
+           sum = 1;
+       } else {
+           for (int i = 1; i <= terms; i++)
+               sum += geometricRecursive(firstTerm, ratio, i);
+       }
+       return sum;
+   }
+
+   private static int geometricRecursive(int firstTerm, int ratio, int terms) {
+       if (terms == 1)
+           return firstTerm * ratio;
+       else
+           return ratio * geometricRecursive(firstTerm, ratio, terms - 1);
+
+   }
+
+}
