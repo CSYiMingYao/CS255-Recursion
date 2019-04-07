@@ -1,1 +1,6 @@
+Lab -5 Recursion
+Be able to trace recursive function calls
+Be able to write non-recursive and recursive methods to find geometric and
+harmonic progressions.
+
 In this lab we will follow how the computer executes recursive methods, and will write our own recursive method, as well as the iterative equivalent. There are two common progressions in mathematics, the geometric progression and the harmonic progression. The geometric progression is defined as the product of the first n integers. The harmonic progression is defined as the product of the inverses of the first n integers. Mathematically, the definitions are as follows:
